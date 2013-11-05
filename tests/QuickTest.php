@@ -21,6 +21,9 @@ class QuickTest extends \phpunit_framework_testcase
         $keywords = $analizer->getKeywords($text);
         $i = 0;
         foreach ($expected as $word) {
+            if ($word[0] == '*') {
+                $word  = substr($word, 1);
+            }
             if (!empty($keywords[$word])) {
                 $i++;
             }
