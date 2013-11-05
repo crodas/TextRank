@@ -1,0 +1,59 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "dce964b2c4be6c54c5c5a18ce0e811cd",
+    "packages": [
+        {
+            "name": "crodas/languagedetector",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crodas/LanguageDetector.git",
+                "reference": "cb7b6283a705d771c296d360655564d9525c39b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crodas/LanguageDetector/zipball/e559b0124787029c07cbe152c7f8d4af732e0b19",
+                "reference": "cb7b6283a705d771c296d360655564d9525c39b6",
+                "shasum": ""
+            },
+            "require-dev": {
+                "crodas/autoloader": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "LanguageDetector": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "César D. Rodas",
+                    "email": "crodas@php.net"
+                }
+            ],
+            "description": "simple library to classify texts",
+            "time": "2013-07-24 04:32:10"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "ext-pcre": "*",
+        "ext-mbstring": "*"
+    },
+    "platform-dev": [
+
+    ]
+}
