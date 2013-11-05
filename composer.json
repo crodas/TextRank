@@ -1,0 +1,17 @@
+{
+    "name": "crodas/text-rank",
+    "description": "Extract relevant keywords from a given text",
+    "require": {
+        "crodas/languagedetector": "*"
+    },
+    "authors": [
+        {
+            "name": "César D. Rodas",
+            "email": "crodas@php.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "classmap":["lib/"]
+    }
+}
