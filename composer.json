@@ -4,6 +4,9 @@
     "require": {
         "crodas/languagedetector": "*"
     },
+    "suggest": {
+        "ext-stem": "Improves keywords selection"
+    },
     "authors": [
         {
             "name": "César D. Rodas",

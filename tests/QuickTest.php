@@ -37,7 +37,16 @@ class QuickTest extends \phpunit_framework_testcase
         $analizer = new \crodas\TextRank\TextRank($config);
         $keywords = $analizer->getKeywords($text);
         foreach ($expected as $word) {
-            $this->AssertTrue(!empty($keywords[$word]), "cannot find \"$word\"");
+            $catch = false;
+            if ($word[0] == '*') {
+                $catch = true;
+                $word  = substr($word, 1);
+            }
+            try {
+                $this->assertTrue(!empty($keywords[$word]), "cannot find \"$word\"");
+            } catch (\Exception $e) {
+                if (!$catch) throw $e;
+            }
         }
     }
 

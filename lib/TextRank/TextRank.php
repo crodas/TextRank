@@ -108,7 +108,7 @@ class TextRank
 
         // denormalize each single words
         foreach ($normalized as $pos => $word) {
-            if (!empty($top[$word]) && $top[$word] != $words[$pos]) {
+            if (!empty($top[$word]) && $word != $words[$pos]) {
                 $top[$words[$pos]] = $top[$word];
                 unset($top[$word]);
             }
