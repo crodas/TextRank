@@ -28,9 +28,6 @@ class QuickTest extends \phpunit_framework_testcase
                 $i++;
             }
         }
-        if ($i == 0) {
-            var_dump($keywords);return;
-        }
         $this->AssertTrue($i > 0);
     }
 
