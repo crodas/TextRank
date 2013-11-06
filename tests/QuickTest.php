@@ -40,7 +40,11 @@ class QuickTest extends \phpunit_framework_testcase
         $analizer = new \crodas\TextRank\Summary($config);
         $summary = $analizer->getSummary($text);
 
-        $this->assertTrue(strpos($summary, $esummary) !== false);
+        try {
+            $this->assertTrue(strpos($summary, $esummary) !== false);
+        } catch (\Exception $e) {
+            var_Dump($esummary);exit;
+        }
     }
 
     /** @dataProvider provider */
