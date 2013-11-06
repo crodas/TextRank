@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "979a4f7223f4bb34bc6e299ab419f45e",
+    "hash": "8d372775f7c62aeef298600677e8e4ed",
     "packages": [
         {
             "name": "crodas/languagedetector",
@@ -53,7 +53,6 @@
 
     ],
     "platform": {
-        "ext-pcre": "*",
         "ext-mbstring": "*"
     },
     "platform-dev": [

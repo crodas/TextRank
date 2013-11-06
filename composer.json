@@ -2,7 +2,6 @@
     "name": "crodas/text-rank",
     "description": "Extract relevant keywords from a given text",
     "require": {
-        "ext-pcre": "*",
         "ext-mbstring": "*",
         "crodas/languagedetector": "~0.1"
     },
