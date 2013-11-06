@@ -43,7 +43,7 @@ class QuickTest extends \phpunit_framework_testcase
         try {
             $this->assertTrue(strpos($summary, $esummary) !== false);
         } catch (\Exception $e) {
-            var_Dump($esummary);exit;
+            var_Dump($summary);exit;
         }
     }
 
