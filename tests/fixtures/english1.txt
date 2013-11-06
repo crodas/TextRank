@@ -31,6 +31,6 @@ Users do not rely on storage servers to provide confidentiality nor integrity fo
 
  To obtain this source code, you currently need to install both darcs and git (we're part-way through a transition from darcs to git). Then use:
 
-   darcs get --lazy https://leastauthority.com/static/source/ticket999-S3-backend
+   darcs get --lazy https://leastauthority.com/static/source/ticket999-S3-
      git clone https://github.com/LeastAuthority/leastauthority.com
      The patches to txaws are at https://leastauthority.com/static/patches.

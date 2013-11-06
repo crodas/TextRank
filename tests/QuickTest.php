@@ -7,7 +7,8 @@ class QuickTest extends \phpunit_framework_testcase
         return array_map(function($file) {
             $text = file_get_contents($file);
             $expected = file(substr($file, 0, -3) . 'expected', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            return [$text, $expected];            
+            $summary  = file_Get_contents(substr($file, 0, -3) . 'summary', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            return [$text, $expected, trim($summary)];            
         }, glob(__DIR__ . "/fixtures/*.txt"));
     }
 
@@ -29,6 +30,17 @@ class QuickTest extends \phpunit_framework_testcase
             }
         }
         $this->AssertTrue($i > 0);
+    }
+
+    /** @dataProvider provider */
+    public function testSentences($text, $expected, $esummary)
+    {
+        $config = new \crodas\TextRank\Config;
+        $config->addListener(new \crodas\TextRank\Stopword);
+        $analizer = new \crodas\TextRank\Summary($config);
+        $summary = $analizer->getSummary($text);
+
+        $this->assertTrue(strpos($summary, $esummary) !== false);
     }
 
     /** @dataProvider provider */

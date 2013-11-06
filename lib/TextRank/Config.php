@@ -74,7 +74,7 @@ class Config
         foreach ($this->listeners as $object) {
             $callback = array($object, $ev);
             if (is_callable($callback)) {
-                $output = call_user_func($callback, $data);
+                $output = $object->$ev($data);
                 if (!empty($output)) {
                     return $output;
                 }

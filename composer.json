@@ -4,7 +4,7 @@
     "require": {
         "ext-pcre": "*",
         "ext-mbstring": "*",
-        "crodas/languagedetector": "*"
+        "crodas/languagedetector": "~0.1"
     },
     "suggest": {
         "ext-stem": "Improves keywords selection"

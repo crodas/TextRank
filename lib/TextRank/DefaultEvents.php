@@ -34,7 +34,6 @@
   | Authors: César Rodas <crodas@php.net>                                           |
   +---------------------------------------------------------------------------------+
 */
-
 namespace crodas\TextRank;
 
 class DefaultEvents
@@ -59,6 +58,12 @@ class DefaultEvents
             
             return mb_strlen($keyword) > 3;
         });
+    }
+
+    public function get_sentences($text)
+    {
+        $sentences = preg_split('/(\n+)|(\\.\W)/', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        return array_values(array_filter(array_map('trim', $sentences)));
     }
 
     public function get_words($text)

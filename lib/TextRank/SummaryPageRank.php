@@ -36,70 +36,46 @@
 */
 namespace crodas\TextRank;
 
-use LanguageDetector\Detect;
+use LanguageDetector\Sort\PageRank;
 
-/**
- *  Data files has been borrowed from
- *      https://github.com/ekorn/Keywords
- */
-class Stopword extends DefaultEvents
+class SummaryPageRank extends Pagerank
 {
-    protected $stopword;
-    protected $lang;
-
-    public function normalize_keywords(Array $keywords)
+    protected function getGraph(Array $sentences)
     {
-        $normalized = parent::normalize_keywords($keywords);
-        $callback   = "stem_{$this->lang}";
-        if (is_callable($callback)) {
-            return array_map(function ($keyword) use ($callback) {
-                return $callback($keyword);
-            }, $normalized);
-        }
-        return $normalized;
-    }
-
-    public function filter_keywords(Array $keywords)
-    {
-        $keywords = parent::filter_keywords($keywords);
-        return array_filter($keywords, function ($word) {
-            $word = mb_strtolower($word);
-            return empty($this->stopword[$word]);
-        });
+        $outlinks = array();
+        $graph    = array();
+        $values   = array(); 
         
-    }
+        $index = [];
+        foreach($sentences as $id => $words) {
+            foreach ($words as $word) {
+                if (empty($index[$word])) {
+                    $index[$word] = [];
+                }
+                $index[$word][] = $id;
+            }
+        }
 
-    protected function getClassifier()
-    {
-        static $detect;
-        if (empty($detect)) {
-            $detect = Detect::initByPath(__DIR__ . '/language-profile.php');
+        foreach ($index as $word => $ids) {
+            $ids = array_unique($ids);
+            if (count($ids) == 1) continue;
+            foreach ($ids as $source) {
+                foreach ($ids as $target) {
+                    if ($source != $target) {
+                        if (empty($outlinks[$source])) {
+                            $outlinks[$source] = 0;
+                        }
+                        if (empty($graph[$target])) {
+                            $graph[$target] = array();
+                        }
+                        $outlinks[$source]++;
+                        $graph[$target][] = $source;
+                        $values[$target]  = 0.15;
+                    }
+                }
+            }
         }
-        return $detect;
-    }
-    protected function getStopwords()
-    {
-        static $stopwords;
-        if (empty($stopwords)) {
-            $stopwords = require __DIR__ . '/Stopword/Stopword.php';
-        }
-        return $stopwords;
-    }
-
-    public function get_words($text)
-    {
-        $detect    = $this->getClassifier();
-        $stopwords = $this->getStopwords(); 
-        $lang = $detect->detect($text);
-        if (!is_string($lang)) {
-            throw new \RuntimeException("Cannot detect the language of the text");
-        }
-        if (empty($stopwords[$lang])) {
-            throw new \RuntimeException("We dont have an stop word for {$lang}, please add it in " . __DIR__ . "/Stopword/{$lang}-stopwords.txt and run generate.php");
-        }
-        $this->stopword = $stopwords[$lang];
-        $this->lang     = $lang;
-
-        return parent::get_words($text);
+        
+        return compact('graph', 'values', 'outlinks');
     }
 }

@@ -3,24 +3,24 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "dce964b2c4be6c54c5c5a18ce0e811cd",
+    "hash": "979a4f7223f4bb34bc6e299ab419f45e",
     "packages": [
         {
             "name": "crodas/languagedetector",
-            "version": "dev-master",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/crodas/LanguageDetector.git",
-                "reference": "cb7b6283a705d771c296d360655564d9525c39b6"
+                "reference": "07aa8bb806cb71fe4e4352c12232a5c74bf416ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/crodas/LanguageDetector/zipball/e559b0124787029c07cbe152c7f8d4af732e0b19",
-                "reference": "cb7b6283a705d771c296d360655564d9525c39b6",
+                "url": "https://api.github.com/repos/crodas/LanguageDetector/zipball/07aa8bb806cb71fe4e4352c12232a5c74bf416ed",
+                "reference": "07aa8bb806cb71fe4e4352c12232a5c74bf416ed",
                 "shasum": ""
             },
             "require-dev": {
-                "crodas/autoloader": "dev-master"
+                "crodas/autoloader": "~0.1"
             },
             "type": "library",
             "autoload": {
@@ -29,6 +29,9 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-4-Clause"
+            ],
             "authors": [
                 {
                     "name": "César D. Rodas",
@@ -36,7 +39,7 @@
                 }
             ],
             "description": "simple library to classify texts",
-            "time": "2013-07-24 04:32:10"
+            "time": "2013-11-06 01:26:03"
         }
     ],
     "packages-dev": [
