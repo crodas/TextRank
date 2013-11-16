@@ -1,4 +1,4 @@
-TextRank [![Build Status](https://travis-ci.org/crodas/TextRank.png?branch=master)](https://travis-ci.org/crodas/TextRank)
+TextRank [![Build Status](https://travis-ci.org/crodas/TextRank.png?branch=master)](https://travis-ci.org/crodas/TextRank) <a href="https://flattr.com/submit/auto?user_id=crodas&url=https%3A%2F%2Fgithub.com%2Fcrodas%2Ftextrank" target="_blank"><img src="https://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 ========
 
 extract relevant keywords from a given text
