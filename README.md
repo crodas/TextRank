@@ -51,3 +51,16 @@ var_dump($keywords);
 By doing this it will detect the language of the text and will remove common words (from the stopword list). If `ext-stem` is available the results will be even better.
 
 
+Summarize large texts
+---------------------
+
+This class is also capable of summarizing long texts
+
+```php
+$config = new \crodas\TextRank\Config;
+$config->addListener(new \crodas\TextRank\Stopword);
+$analizer = new \crodas\TextRank\Summary($config);
+$summary = $analizer->getSummary($text);         
+```
+
+`$summary` is at most 5% of the sentences of the text.
