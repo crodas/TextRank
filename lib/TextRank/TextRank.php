@@ -47,7 +47,7 @@ class TextRank
         $this->config = $config;
     }
 
-    public function getKeywords($text)
+    public function getAllKeywordsSorted($text)
     {
         // split the text into words
         $words = $this->config->trigger('get_words', $text);
@@ -102,20 +102,25 @@ class TextRank
             foreach ($prev as $word) {
                 $score  += $top[$word[1]];
             }
-            $top[ trim($phrase) ] = $score;
+            $sorted[ trim($phrase) ] = $score;
         }
 
         // denormalize each single words
         foreach ($normalized as $pos => $word) {
-            if (!empty($top[$word]) && $word != $words[$pos]) {
-                $top[$words[$pos]] = $top[$word];
-                unset($top[$word]);
+            if (!empty($sorted[$word]) && $word != $words[$pos]) {
+                $sorted[$words[$pos]] = $sorted[$word];
+                unset($sorted[$word]);
             }
         }
         
-        arsort($top);
+        arsort($sorted);
 
-        return $top;
+        return $sorted;
+    }
+
+    public function getKeywords($text, $limit = 20)
+    {
+        return array_slice($this->getAllKeywordsSorted($text), 0, $limit);
     }
 }
 
