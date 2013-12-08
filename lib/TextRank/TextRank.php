@@ -97,12 +97,16 @@ class TextRank
         foreach ($phrases as $prev) {
             $start  = current($prev)[0];
             $end    = end($prev)[0];
-            $phrase = implode(' ', array_slice($words, $start, $end - $start+1, true));
+            $zwords = array_slice($words, $start, $end - $start+1, true);
+            if (count(array_filter($zwords, 'ctype_punct')) > 0) {
+                continue;
+            }
+            $phrase = implode(' ', $zwords);
             $score  = 0;
             foreach ($prev as $word) {
                 $score  += $top[$word[1]];
             }
-            $sorted[ trim($phrase) ] = $score;
+            $sorted[ trim($phrase) ] = $score/($end - $start);
         }
 
         // denormalize each single words

@@ -43,7 +43,9 @@ class QuickTest extends \phpunit_framework_testcase
         $this->assertTrue(strpos($summary, $esummary) !== false, "Expected: $summary");
     }
 
-    /** @dataProvider provider */
+    /** 
+     * @dataProvider provider 
+     */
     public function testGetkeywords($text, $expected)
     {
         $config = new \crodas\TextRank\Config;

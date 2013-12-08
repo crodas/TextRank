@@ -51,6 +51,8 @@ class Stopword extends DefaultEvents
     {
         $normalized = parent::normalize_keywords($keywords);
         $callback   = "stem_{$this->lang}";
+
+        $tagger   = __NAMESPACE__ . '\POS\\' . ucfirst($this->lang) . '\Tagger';
         if (is_callable($callback)) {
             return array_map(function ($keyword) use ($callback) {
                 return $callback($keyword);
@@ -62,11 +64,18 @@ class Stopword extends DefaultEvents
     public function filter_keywords(Array $keywords)
     {
         $keywords = parent::filter_keywords($keywords);
-        return array_filter($keywords, function ($word) {
+        $tagger   = __NAMESPACE__ . '\POS\\' . ucfirst($this->lang) . '\Tagger';
+
+        if (class_exists($tagger)) {
+            $keywords = $tagger::get($keywords);
+        }
+
+        $keywords = array_filter($keywords, function ($word) {
             $word = mb_strtolower($word);
             return empty($this->stopword[$word]);
         });
-        
+
+        return $keywords;
     }
 
     protected function getClassifier()

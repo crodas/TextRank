@@ -48,7 +48,7 @@ class DefaultEvents
     public function filter_keywords(Array $keywords)
     {
         return array_filter($keywords, function ($keyword) {
-            if (preg_match('/[1-9]/', $keyword)) {
+            if (is_numeric($keyword)) {
                 return false;
             }
 
