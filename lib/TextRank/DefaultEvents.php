@@ -36,6 +36,11 @@
 */
 namespace crodas\TextRank;
 
+function mb_trim( $string )
+{
+    return preg_replace("/(^\s+)|(\s+$)/us", "", $string);
+}
+
 class DefaultEvents
 {
     public function normalize_keywords(Array $keywords)
@@ -55,20 +60,20 @@ class DefaultEvents
             if ($keyword[0] == mb_strtoupper($keyword[0])) {
                 return true;
             }
-            
+
             return mb_strlen($keyword) > 3;
         });
     }
 
     public function get_sentences($text)
     {
-        $sentences = preg_split('/(\n+)|(\\.\W)/', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-        return array_values(array_filter(array_map('trim', $sentences)));
+        $sentences = preg_split('/(\n+)|(\\.\W)/u', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        return array_values(array_filter(array_map(__NAMESPACE__ . '\mb_trim', $sentences)));
     }
 
     public function get_words($text)
     {
-        $words = preg_split('/(?:(^\p{P}+)|(\p{P}*\s+\p{P}*)|(\p{P}+$))/u', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $words = preg_split('/(?:(^\p{P}+)|(\p{P}*\s+\p{P}*)|(\p{P}+$))/su', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         return array_values(array_filter(array_map('trim', $words)));
     }
 }
