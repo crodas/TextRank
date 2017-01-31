@@ -10,7 +10,7 @@
     convertWarningsToExceptions = "true"
     processIsolation            = "false"
     stopOnError                 = "true"
-    stopOnFailure               = "true"
+    stopOnFailure               = "false"
     stopOnIncomplete            = "false"
     stopOnSkipped               = "false"
     syntaxCheck                 = "true"

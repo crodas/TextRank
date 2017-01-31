@@ -40,7 +40,7 @@ class QuickTest extends \phpunit_framework_testcase
         $analizer = new \crodas\TextRank\Summary($config);
         $summary = $analizer->getSummary($text);
 
-        $this->assertTrue(strpos($summary, $esummary) !== false, "Expected: $summary");
+        $this->assertTrue(strpos($summary, $esummary) !== false, "+ $summary\n - $esummary");
     }
 
     /** 
@@ -65,6 +65,17 @@ class QuickTest extends \phpunit_framework_testcase
                 if (!$catch) throw $e;
             }
         }
+    }
+
+    // Make sure bug #4 is fixed
+    public function testSplitMultibyteTexts()
+    {
+        $text = '... « les derniers jours de guerre » ...';
+        $event = new crodas\TextRank\DefaultEvents;
+        $words = $event->get_words($text);
+        $expected = array('«', 'les', 'derniers', 'jours', 'de', 'guerre', '»');
+
+        $this->assertEquals(array_diff($expected, $words), array());
     }
 
 }
